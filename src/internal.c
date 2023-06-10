@@ -22,6 +22,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
+// Some procedures used internally by the library, not to be exposed
+// to the end-user. Those may in the future be moved into other source files.
+
 // Input:
 //  - a, b = 32 bit unsigned numbers which we want to add
 //  - prev_carry = carry from a previous addition

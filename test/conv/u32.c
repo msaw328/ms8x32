@@ -22,58 +22,64 @@
 
 #include "runtests.h"
 
-int simple_greater_than(void) {
-    ms8x32_t a = {
-        .digits = { 0xf8765232, 0x1245, 0, 0, 0, 0, 0x1, 0 }
+int from_u32(void) {
+    uint32_t from = 0xff8899aa;
+
+    ms8x32_t expected_result = {
+        .digits = { 0xff8899aa, 0, 0, 0, 0, 0, 0, 0 }
     };
 
-    ms8x32_t b = {
-        .digits = { 0xffffffff, 0, 0, 0, 0, 0, 0x1, 0 }
-    };
+    ms8x32_t result = { 0 };
 
-    if(ms8x32_cmp(&a, &b) <= 0) return 1;
+    ms8x32_err_t status = ms8x32_from_u32(&result, from);
 
-    if(!MS8X32_GT(&a, &b)) return 2;
+    if(status != MS8X32_SUCCESS) return 1;
+
+    if(memcmp(&result, &expected_result, sizeof(ms8x32_t)) != 0) return 2;
 
     return 0;
 }
 
-int simple_equal(void) {
+int to_u32(void) {
+    uint32_t expected_result = 0xff8899aa;
+
     ms8x32_t a = {
-        .digits = { 0xffffffff, 0, 0, 0, 0, 0, 0x1, 0 }
+        .digits = { 0xff8899aa, 0, 0, 0, 0, 0, 0, 0 }
     };
 
-    ms8x32_t b = {
-        .digits = { 0xffffffff, 0, 0, 0, 0, 0, 0x1, 0 }
-    };
+    uint32_t result = 0;
 
-    if(ms8x32_cmp(&a, &b) != 0) return 1;
+    ms8x32_err_t status = ms8x32_to_u32(&a, &result);
 
-    if(!MS8X32_EQ(&a, &b)) return 2;
+    if(status != MS8X32_SUCCESS) return 1;
+
+    if(expected_result != result) return 2;
 
     return 0;
 }
 
-int simple_less_than(void) {
+int to_u32_check_trunc(void) {
+    uint32_t expected_result = 0xff8899aa;
+
     ms8x32_t a = {
-        .digits = { 0xf8765232, 0, 0, 0, 0, 0, 0, 0x2 }
+        .digits = { 0xff8899aa, 0, 0, 0, 0, 0, 0, 0x1 }
     };
 
-    ms8x32_t b = {
-        .digits = { 0xffffffff, 0, 0, 0, 0, 0, 0, 0x2 }
-    };
+    uint32_t result = 0;
 
-    if(ms8x32_cmp(&a, &b) >= 0) return 1;
+    ms8x32_err_t status = ms8x32_to_u32(&a, &result);
 
-    if(!MS8X32_LT(&a, &b)) return 2;
+    if((status & MS8X32_ERR_TRUNCATED) == 0) return 1;
+
+    if(expected_result != result) return 2;
 
     return 0;
 }
 
 int main(void) {
-    runtest(1, simple_less_than);
-    runtest(2, simple_equal);
-    runtest(3, simple_greater_than);
+    runtest(1, from_u32);
+    runtest(2, to_u32);
+    runtest(3, to_u32_check_trunc);
 
     return 0;
 }

@@ -23,6 +23,8 @@
 #include <string.h>
 #include <stddef.h>
 
+// Comparision between two numbers
+
 // Returns positive value, 0 or negative value if a is greater than, equal to or less than b
 // NOT constant time!
 int ms8x32_cmp(ms8x32_t* a, ms8x32_t* b) {

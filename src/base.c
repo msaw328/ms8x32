@@ -23,6 +23,9 @@
 #include <string.h>
 #include <stddef.h>
 
+// Basic operations on numbers which do not fall into other categories
+// For example initialization, copying etc.
+
 ms8x32_err_t ms8x32_set_zero(ms8x32_t* n) {
     if(!n) return MS8X32_ERR_NULL_ARG;
 
@@ -46,27 +49,3 @@ ms8x32_err_t ms8x32_copy(ms8x32_t* from, ms8x32_t* to) {
 
     return MS8X32_SUCCESS;
 }
-
-ms8x32_err_t ms8x32_from_u32(ms8x32_t* n, uint32_t value) {
-    if(!n) return MS8X32_ERR_NULL_ARG;
-
-    n->digits[0] = value;
-    memset(&(n->digits[1]), 0x0, sizeof(uint32_t) * (MS8X32_DIGITS - 1));
-
-    return MS8X32_SUCCESS;
-}
-
-ms8x32_err_t ms8x32_to_u32(ms8x32_t* n, uint32_t* value) {
-    if(!n || !value) return MS8X32_ERR_NULL_ARG;
-
-    ms8x32_err_t status = MS8X32_SUCCESS;
-
-    for(size_t idx = 1; idx < MS8X32_DIGITS; idx++) {
-        if(n->digits[idx] != 0x0) status |= MS8X32_ERR_TRUNCATED;
-    }
-
-    *value = n->digits[0];
-
-    return status;
-}
-

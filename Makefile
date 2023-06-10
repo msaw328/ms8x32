@@ -27,7 +27,7 @@ build:
 CFLAGS := -Wall -Werror -Wextra -pedantic -std=c99 -I./include/
 
 # List of source files
-SRC := base.c arithmetic.c cmp.c internal.c debug.c
+SRC := base.c arithmetic.c cmp.c conv.c internal.c debug.c
 SRC := $(patsubst %,src/%,$(SRC))
 
 # List of object files of the library
@@ -44,7 +44,8 @@ build/lib/libms8x32.so: $(OBJ)
 # List of test source files
 TEST_SRC := \
 	arithmetic/addition.c arithmetic/multiplication.c \
-	cmp.c
+	cmp.c \
+	conv/bytes.c conv/u32.c
 
 TEST_SRC := $(patsubst %,test/%,$(TEST_SRC))
 

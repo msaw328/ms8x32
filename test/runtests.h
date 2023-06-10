@@ -22,7 +22,7 @@
 
 #define MAKE_CODE(case_id, status_code) (int) ((case_id << 4) + status_code)
 
-void runtest(int case_id, int (*func)()) {
+void runtest(int case_id, int (*func)(void)) {
     int status = func();
 
     if(status != 0) exit(MAKE_CODE(case_id, status));

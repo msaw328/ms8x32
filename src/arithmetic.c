@@ -22,6 +22,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+// Regular arithmetic operations on numbers
+
 ms8x32_err_t ms8x32_add(ms8x32_t* a, ms8x32_t* b, ms8x32_t* result) {
     if(!a || !b || !result) return MS8X32_ERR_NULL_ARG;
 

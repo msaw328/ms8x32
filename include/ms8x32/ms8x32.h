@@ -40,8 +40,15 @@ void ms8x32_debug_dump(ms8x32_t* n);
 ms8x32_err_t ms8x32_set_zero(ms8x32_t* n);
 ms8x32_err_t ms8x32_set_max(ms8x32_t* n);
 ms8x32_err_t ms8x32_copy(ms8x32_t* from, ms8x32_t* to);
+
+// Conversions - conv.c
 ms8x32_err_t ms8x32_from_u32(ms8x32_t* n, uint32_t value);
 ms8x32_err_t ms8x32_to_u32(ms8x32_t* n, uint32_t* value);
+#define MS8X32_BYTEORDER_LE 0x1
+#define MS8X32_BYTEORDER_BE 0x2
+#define MS8X32_BYTES_LENGTH (256 / 8)
+ms8x32_err_t ms8x32_to_bytes(ms8x32_t* n, uint8_t* bytes_output, int byteorder);
+ms8x32_err_t ms8x32_from_bytes(ms8x32_t* n, uint8_t* bytes_input, int byteorder);
 
 // Arithmetic - arithmetic.c
 ms8x32_err_t ms8x32_add(ms8x32_t* a, ms8x32_t* b, ms8x32_t* result);

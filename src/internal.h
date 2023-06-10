@@ -20,6 +20,9 @@
 
 #include <stdint.h>
 
+// Some procedures used internally by the library, not to be exposed
+// to the end-user. Those may in the future be moved into other source files.
+
 #define U32_MAX (uint32_t) (0xffffffff)
 
 // Input:

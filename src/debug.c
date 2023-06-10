@@ -21,6 +21,8 @@
 
 #include <stdint.h>
 
+// Stuff for debugging purposes
+
 // TODO: Remove after debugging is removed
 #include <stdio.h>
 

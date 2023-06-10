@@ -22,7 +22,7 @@
 
 #include "runtests.h"
 
-int simple_multiplication() {
+int simple_multiplication(void) {
     ms8x32_t a = {
         .digits = { 0xffffffff, 0x24, 0, 0, 0, 0, 0, 0 }
     };
@@ -46,7 +46,7 @@ int simple_multiplication() {
     return 0;
 }
 
-int simple_overflow() {
+int simple_overflow(void) {
     ms8x32_t a = {
         .digits = { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xefffffff }
     };
@@ -71,7 +71,7 @@ int simple_overflow() {
 
 }
 
-int simple_multiplication_u32() {
+int simple_multiplication_u32(void) {
     ms8x32_t a = {
         .digits = { 0xffffffff, 0x24, 0, 0, 0, 0, 0, 0 }
     };
@@ -93,7 +93,7 @@ int simple_multiplication_u32() {
     return 0;
 }
 
-int simple_overflow_u32() {
+int simple_overflow_u32(void) {
     ms8x32_t a = {
         .digits = { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xefffffff }
     };
@@ -116,9 +116,11 @@ int simple_overflow_u32() {
 
 }
 
-int main() {
+int main(void) {
     runtest(1, simple_multiplication);
     runtest(2, simple_overflow);
     runtest(3, simple_multiplication_u32);
     runtest(4, simple_overflow_u32);
+
+    return 0;
 }

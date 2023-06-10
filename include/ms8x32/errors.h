@@ -30,5 +30,6 @@ typedef uint32_t ms8x32_err_t;
 #define MS8X32_ERR_OVERFLOW (ms8x32_err_t) (1 << 1) // Overflow happened (bits left bounds to the left) - addition, leftshift, multiplication
 #define MS8X32_ERR_UNDERFLOW (ms8x32_err_t) (1 << 2) // Underflow happened (bits left bounds to the right) - subtraction, rightshift
 #define MS8X32_ERR_TRUNCATED (ms8x32_err_t) (1 << 3) // Conversion from ms8x32num to smaller type truncated some important bits
+#define MS8X32_ERR_INVALID (ms8x32_err_t) (1 << 4) // Invalid value of an argument
 
 #endif
