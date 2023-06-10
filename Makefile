@@ -45,6 +45,7 @@ build/lib/libms8x32.so: $(OBJ)
 TEST_SRC := \
 	arithmetic/addition.c arithmetic/multiplication.c \
 	cmp.c \
+	base.c \
 	conv/bytes.c conv/u32.c
 
 TEST_SRC := $(patsubst %,test/%,$(TEST_SRC))
